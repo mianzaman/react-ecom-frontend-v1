@@ -15,7 +15,7 @@ const ShopProvider = (props) => {
 
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    console.log(cartItems);
+    // console.log(cartItems);
   };
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
@@ -33,7 +33,13 @@ const ShopProvider = (props) => {
       }
     }
     return total;
-
+  };
+  const totalCartItems = () => {
+    let total = 0;
+    for (const item in cartItems) {
+      total += cartItems[item];
+    }
+    return total;
   };
 
   const ContextValue = {
@@ -42,6 +48,7 @@ const ShopProvider = (props) => {
     cartItems,
     addToCart,
     removeFromCart,
+    totalCartItems
   };
   //  console.log(cartItems);
   return (
